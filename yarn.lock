@@ -911,6 +911,11 @@ inflight@^1.0.4:
     once "^1.3.0"
     wrappy "1"
 
+informed@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/informed/-/informed-4.2.0.tgz#fde096fc4ca9232916b37bff00fb6c2ec47fff0e"
+  integrity sha512-yVYfByNRxKEWSgZQ5oNNhBOikrkdqZnBfkhUz+rg7F9kExIT8dKlXuyXlFu/W8SanVpQaAiXxl6Ao+Drk39bDQ==
+
 inherits@2:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"

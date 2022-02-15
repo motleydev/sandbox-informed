@@ -1,9 +1,19 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import {
+  Form,
+  Input,
+  Select,
+  Checkbox,
+  Relevant,
+  Debug,
+  useFormApi,
+} from "informed";
 
 const Home: NextPage = () => {
+  const formAPI = useFormApi();
   return (
     <div className={styles.container}>
       <Head>
@@ -13,60 +23,33 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Form onSubmit={() => {}}>
+          <Input name="name" label="Name" placeholder="Elon" />
+          <Input name="age" type="number" label="Age" required="Age Required" />
+          <Input name="phone" label="Phone" formatter="+1 (###)-###-####" />
+          <Select name="car" label="Car" initialValue="ms">
+            <option value="ms">Model S</option>
+            <option value="m3">Model 3</option>
+            <option value="mx">Model X</option>
+            <option value="my">Model Y</option>
+          </Select>
+          <Checkbox name="married" label="Married?" />
+          <Relevant when={({ formState }) => formState.values.married}>
+            <Input name="spouse" label="Spouse" />
+          </Relevant>
+          <button type="submit">Submit</button>
+          <Debug />
+        </Form>
+        <button
+          onClick={() => {
+            formAPI.setValue("email", "foo@bar.baz");
+          }}
         >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+          Set Email to foo@bar.baz
+        </button>
+      </main>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
